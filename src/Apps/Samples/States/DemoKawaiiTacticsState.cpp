@@ -14,6 +14,7 @@
 #include <Libs/Rendering/RenderSystem.h>
 
 #include <SDL.h>
+#include <tuple>
 
 namespace tactics {
 
@@ -33,6 +34,7 @@ glm::vec3 toWorldPosition(const TileCoord& tile) {
 	return {kGridOrigin.x + static_cast<float>(tile.x) * kTileSize,
 			0.0f,
 			kGridOrigin.z + static_cast<float>(tile.y) * kTileSize};
+	return {kGridOrigin.x + static_cast<float>(tile.x) * kTileSize, 0.0f, kGridOrigin.z + static_cast<float>(tile.y) * kTileSize};
 }
 } // namespace
 
@@ -126,6 +128,7 @@ void DemoKawaiiTacticsState::_trySelectUnitAtCursor() {
 	auto& sceneSystem = getService<SceneSystem>();
 	auto& registry = sceneSystem.getRegistry();
 	auto cameraView = registry.view<CurrentCamera, Camera, Transform>();
+	auto cameraView = registry.view<component::CurrentCamera, component::Camera, component::Transform>();
 	if (cameraView.empty()) {
 		return;
 	}
@@ -133,6 +136,8 @@ void DemoKawaiiTacticsState::_trySelectUnitAtCursor() {
 	auto&& [cameraEntity, camera, cameraTransform] = *cameraView.each().begin();
 	(void)cameraEntity;
 	(void)cameraTransform;
+	auto cameraTuple = *cameraView.each().begin();
+	auto& camera = std::get<1>(cameraTuple);
 	auto viewProjection = camera.projection * camera.view;
 
 	int mouseX = 0;
@@ -147,6 +152,9 @@ void DemoKawaiiTacticsState::_trySelectUnitAtCursor() {
 
 	glm::vec2 mouseNdc{(static_cast<float>(mouseX) / static_cast<float>(windowSize.x)) * 2.0f - 1.0f,
 					   1.0f - (static_cast<float>(mouseY) / static_cast<float>(windowSize.y)) * 2.0f};
+	glm::vec2 mouseNdc{
+		(static_cast<float>(mouseX) / static_cast<float>(windowSize.x)) * 2.0f - 1.0f,
+		1.0f - (static_cast<float>(mouseY) / static_cast<float>(windowSize.y)) * 2.0f};
 
 	constexpr float selectionThreshold = 0.12f;
 	float bestDistance = selectionThreshold * selectionThreshold;
