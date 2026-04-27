@@ -16,6 +16,7 @@
 #include <SDL.h>
 #include <tuple>
 
+
 namespace tactics {
 
 namespace {
@@ -116,19 +117,33 @@ void DemoKawaiiTacticsState::_setupInput() {
 }
 
 void DemoKawaiiTacticsState::_trySelectUnitAtCursor() {
+
+	using namespace component;
+
+
 	if (_units.empty()) {
 		return;
 	}
 
 	auto& sceneSystem = getService<SceneSystem>();
 	auto& registry = sceneSystem.getRegistry();
+
+	auto cameraView = registry.view<CurrentCamera, Camera, Transform>();
+
 	auto cameraView = registry.view<component::CurrentCamera, component::Camera, component::Transform>();
+
 	if (cameraView.empty()) {
 		return;
 	}
 
+
+	auto&& [cameraEntity, camera, cameraTransform] = *cameraView.each().begin();
+	(void)cameraEntity;
+	(void)cameraTransform;
+
 	auto cameraTuple = *cameraView.each().begin();
 	auto& camera = std::get<1>(cameraTuple);
+main
 	auto viewProjection = camera.projection * camera.view;
 
 	int mouseX = 0;
@@ -175,6 +190,10 @@ void DemoKawaiiTacticsState::_trySelectUnitAtCursor() {
 }
 
 void DemoKawaiiTacticsState::_applySelectionHighlight() {
+codex/add-missing-data-files-for-sample-app-ab58gv
+	using namespace component;
+
+ main
 	for (int i = 0; i < static_cast<int>(_units.size()); ++i) {
 		auto& unit = _units[i];
 		if (!unit.character || !unit.shadow) {
