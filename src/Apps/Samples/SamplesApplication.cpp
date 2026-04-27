@@ -11,6 +11,7 @@
 #include "Component/RotateItem.h"
 #include "Component/TranslateItem.h"
 #include "States/DemoDebugDrawingState.h"
+#include "States/DemoKawaiiTacticsState.h"
 #include "States/DemoMapState.h"
 #include "States/DemoParticlesState.h"
 #include "States/DemoPhysicsState.h"
@@ -32,6 +33,7 @@ namespace tactics {
 SamplesApplication::SamplesApplication() {
 	_addSampleFlow<DemoSpriteState>("sprite", "Sprite");
 	_addSampleFlow<DemoMapState>("map", "Map");
+	_addSampleFlow<DemoKawaiiTacticsState>("kawaiitactics", "KawaiiTactics");
 	_addSampleFlow<DemoParticlesState>("particles", "Particles");
 	_addSampleFlow<DemoSimpleState>("simple", "Simple");
 	_addSampleFlow<DemoPongState>("pong", "Pong");
