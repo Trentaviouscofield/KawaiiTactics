@@ -14,7 +14,6 @@
 #include <Libs/Rendering/RenderSystem.h>
 
 #include <SDL.h>
-#include <tuple>
 
 namespace tactics {
 
