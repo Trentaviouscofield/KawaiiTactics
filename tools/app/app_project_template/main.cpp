@@ -2,8 +2,10 @@
 
 #include <Engine/Core/Engine.h>
 
+// clang-format off
 int main(int /*argc*/, char** /*argv*/) {
 	using namespace tactics;
 	Engine::run<##APP_PROJECT_NAME##Application>();
 	return 0;
 }
+// clang-format on

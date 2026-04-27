@@ -4,6 +4,7 @@
 
 namespace tactics {
 
+// clang-format off
 class ##APP_NAME##State : public FsmStateWithServices {
 public:
 	using FsmStateWithServices::FsmStateWithServices;
@@ -11,5 +12,6 @@ public:
 	FsmAction update() override;
 	void exit() override;
 };
+// clang-format on
 
 } // namespace tactics

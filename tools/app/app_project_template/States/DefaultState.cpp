@@ -5,6 +5,7 @@
 
 namespace tactics {
 
+// clang-format off
 FsmAction ##APP_NAME##State::enter() {
 	auto& resourceSystem = getService<resource::ResourceSystem>();
 	resourceSystem.loadPackDefinition("common/resources.json");
@@ -29,5 +30,6 @@ FsmAction ##APP_NAME##State::update() {
 
 	return FsmAction::none();
 }
+// clang-format on
 
 } // namespace tactics
