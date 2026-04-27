@@ -4,6 +4,7 @@
 
 namespace tactics {
 
+// clang-format off
 class Demo##SAMPLE_NAME##State : public SampleState {
 public:
 	using SampleState::SampleState;
@@ -11,5 +12,6 @@ public:
 	FsmAction update() override;
 	void exit() override;
 };
+// clang-format on
 
 } // namespace tactics

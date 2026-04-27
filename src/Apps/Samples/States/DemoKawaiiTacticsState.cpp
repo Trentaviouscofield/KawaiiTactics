@@ -116,6 +116,8 @@ void DemoKawaiiTacticsState::_setupInput() {
 }
 
 void DemoKawaiiTacticsState::_trySelectUnitAtCursor() {
+	using namespace component;
+
 	if (_units.empty()) {
 		return;
 	}
@@ -175,6 +177,8 @@ void DemoKawaiiTacticsState::_trySelectUnitAtCursor() {
 }
 
 void DemoKawaiiTacticsState::_applySelectionHighlight() {
+	using namespace component;
+
 	for (int i = 0; i < static_cast<int>(_units.size()); ++i) {
 		auto& unit = _units[i];
 		if (!unit.character || !unit.shadow) {

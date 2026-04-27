@@ -8,6 +8,7 @@
 
 namespace tactics {
 
+// clang-format off
 FsmAction Demo##SAMPLE_NAME##State::enter() {
 	auto& sceneSystem = getService<SceneSystem>();
 	sceneSystem.createEntity("Camera"_id, "defaultCamera"_id);
@@ -28,5 +29,6 @@ FsmAction Demo##SAMPLE_NAME##State::update() {
 
 	return FsmAction::none();
 }
+// clang-format on
 
 } // namespace tactics
